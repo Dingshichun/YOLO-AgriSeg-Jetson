@@ -1,0 +1,8 @@
+# YOLOv8 dataset configuration file for AppleBBCH81
+path: /home/ding/point_cloud/AgriVision_YOLO_SAM/data/AppleBBCH81
+train: images/train  # train images (relative to 'path')
+val: images/val      # val images (relative to 'path')
+
+# Classes
+names:
+  0: apple

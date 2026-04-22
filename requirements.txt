@@ -1,0 +1,11 @@
+ultralytics>=8.0.0
+torch>=1.13.1
+torchvision>=0.14.1
+opencv-python
+numpy
+matplotlib
+segment-anything
+# TensorRT 相关库按需在部署阶段安装
+# tensorrt
+# onnx
+# onnxruntime

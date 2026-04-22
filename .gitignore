@@ -1,0 +1,32 @@
+# Dataset and Annotations
+data/AppleBBCH81/images/
+data/AppleBBCH81/labels/
+data/AppleBBCH81/labels_bbox_backup/
+*.cache
+*.zip
+*.tar.gz
+
+# Model Weights and Exprots
+# 保留一个 yolov8n-seg.pt 权重文件以供训练和调试使用，其他的都忽略掉
+*.pt
+!yolov8n-seg.pt
+*.engine
+*.onnx
+*.trt
+models/weights/
+
+# Training Outputs
+runs/
+output/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE & OS
+.vscode/
+
+# visualization
+visualization/*.mp4
