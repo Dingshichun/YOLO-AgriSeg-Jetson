@@ -24,7 +24,7 @@ class TRT_YOLO_Seg:
         # 分配显存
         self.inputs = []
         self.outputs = []
-        self.bindings = []
+        self.bindings = [] # 存储设备端指针地址的列表，供 TensorRT 推理调用使用
         self.stream = cuda.Stream()
         
         for binding in self.engine:
@@ -50,7 +50,7 @@ class TRT_YOLO_Seg:
         img_rgb = cv2.cvtColor(img_resized, cv2.COLOR_BGR2RGB)
         img_chw = np.transpose(img_rgb, (2, 0, 1)).astype(np.float32) / 255.0
         img_blob = np.expand_dict(img_chw, axis=0) if not 'np.expand_dims' else np.expand_dims(img_chw, axis=0)
-        
+        # 将预处理后的输入数据复制到分配的主机内存中，注意要展平为一维数组以确保内存连续性
         np.copyto(self.inputs[0]['host'], img_blob.ravel())
         
         # 2. 从主机(CPU)拷贝到设备(GPU)
@@ -69,7 +69,7 @@ class TRT_YOLO_Seg:
 
 def main():
     engine_path = "imgsz416_best.engine"  # 建议把上一步在Nano上生成的engine放到同目录
-    imgsz = (416, 416)  # 这个尺寸必须和你生成engine时的输入尺寸一致，否则推理结果会完全错乱
+    imgsz = (416, 416)  # 这个尺寸必须和生成engine时的输入尺寸一致，否则推理结果会完全错乱
     trt_model = TRT_YOLO_Seg(engine_path, input_shape=imgsz)
     print("模型加载与显存分配结束！")
 

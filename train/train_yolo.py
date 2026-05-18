@@ -1,5 +1,5 @@
 """
-早期的 YOLO 2D 目标检测 (Object Detection) 训练驱代码，
+早期的 YOLO 2D 目标检测 (Object Detection) 训练代码，
 用于输出只有位置信息的框选定位能力。
 """
 import os
